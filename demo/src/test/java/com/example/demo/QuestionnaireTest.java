@@ -1,7 +1,12 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -89,6 +94,34 @@ public class QuestionnaireTest {
 		// print 兩個欄位
 		System.out.println(item.getName());
 		System.out.println(item.getEmail());
+	}
+	
+	@Test
+	public void serviceListTest() {
+		List<Person> list = questionnaireService.getPersonList();
+		Assert.notEmpty(list, "list is empty");
+	}
+	
+	@Test
+	public void collectionTest() {
+		List<String> list = new ArrayList<>();
+		list.add("ABC");
+		list.add("ABC");
+		System.out.println(list);
+		// Set 不允許元素重複(自動刪除重複)
+		Set<String> set = new HashSet<>();
+		set.add("SSS");
+		set.add("SSS");
+		System.out.println(set);
+		// Map
+		Map<String, Integer> map = new HashMap<>();
+		map.put("A", 10);
+		map.put("B", 20);
+		System.out.println(map);
+		for (Map.Entry<String, Integer> item : map.entrySet()) {  // Map.Entry item
+			System.out.println("key: " + item.getKey());
+			System.out.println("value: " + item.getValue());
+		}
 	}
 
 }

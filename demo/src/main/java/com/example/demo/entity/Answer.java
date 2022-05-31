@@ -23,7 +23,8 @@ public class Answer {
 	private UUID id = UUID.randomUUID();
 	
 	@Column(name = "person_id")
-	private String personId;
+	@Type(type = "uuid-char")
+	private UUID personId;
 	
 	@Column(name = "question_id")
 	@Type(type = "uuid-char")
@@ -46,13 +47,7 @@ public class Answer {
 		this.id = id;
 	}
 
-	public String getPersonId() {
-		return personId;
-	}
 
-	public void setPersonId(String personId) {
-		this.personId = personId;
-	}
 
 //	public String getQuestionId() {
 //		return questionId;
@@ -61,6 +56,14 @@ public class Answer {
 //	public void setQuestionId(String questionId) {
 //		this.questionId = questionId;
 //	}
+
+	public UUID getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(UUID personId) {
+		this.personId = personId;
+	}
 
 	public String getAnswer() {
 		return answer;
