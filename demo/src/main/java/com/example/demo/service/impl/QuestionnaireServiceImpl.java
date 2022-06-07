@@ -11,12 +11,14 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.annotation.ConditionalOnA;
 import com.example.demo.entity.Person;
 import com.example.demo.repository.PersonDao;
 import com.example.demo.service.ifs.QuestionnaireService;
 
 @Service
 @EnableScheduling  // 這個類別裡有schedule要執行
+@ConditionalOnA
 public class QuestionnaireServiceImpl implements QuestionnaireService {
 	
 	@Autowired
@@ -65,6 +67,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 //	@Scheduled(fixedRate = 3000)  // 3s
 	@Scheduled(fixedRateString = "${schedule.ms}")  // 這邊的@表示頻率
 	public void scheduleTest() {
+		System.out.println("ConditionalOnA");
 		System.out.println(new Date());
 		System.out.println("====================");
 	}

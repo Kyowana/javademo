@@ -244,13 +244,8 @@ public class AnswerTest {
 	}
 	
 	@Test
-	@Transactional  // 會更動到DB的內容
-	public void transTest() {
-		List<Person> list = new ArrayList<>();
-		Person item = new Person();
-		item.setAge("20");
-		list.add(item);
-//		personDao.save(list);
+	public void updateTest() {
+		personDao.updateById(UUID.fromString("5605cd5f-6669-46dc-9057-7a7d3f7c2d23"), "c0444@gmail.com", new Date());
 	}
 	
 
