@@ -32,7 +32,7 @@ public class DemoApplication {
 		String str1 = "I love java";
 		String str2 = "0912-345-678";
 		String str3 = "1111-11111";
-		String pattern = "\\d\\d\\d\\d-\\d\\d\\d-\\d\\d\\d";  // xxxx-xxx-xxx
+		String pattern = "\\d{4}(-\\d{3}){2}";  // xxxx-xxx-xxx  // -\\d{3} ­«½Æ¤F2¦¸
 		
 		System.out.println("I love java is phone number: " + str1.matches(pattern));
 		System.out.println("0912-345-678 is phone number: " + str2.matches(pattern));
