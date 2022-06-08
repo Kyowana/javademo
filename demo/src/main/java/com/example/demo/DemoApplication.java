@@ -26,8 +26,25 @@ public class DemoApplication {
 
 		// 0607
 //		tryRegEx();
-		tryRegEx2();
+//		tryRegEx2();
+//		tryRegEx3();
 
+	}
+	
+	private static void tryRegEx3() {
+		
+		String str1 = "98_ad";
+		String str2 = "98_@ad";
+		String pattern = "\\w+";  // (不限長度) 數字/大小寫英文/底線
+		System.out.println("98_ad: " + str1.matches(pattern));
+		System.out.println("98_@ad: " + str2.matches(pattern));
+		
+		String str3 = "AAA";
+		String pattern1 = "AAA" + "\\w+";  // 至少1
+		String pattern2 = "AAA" + "\\w*";  // 可0
+		System.out.println("AAA: " + str3.matches(pattern1));
+		System.out.println("AAA: " + str3.matches(pattern2));
+		
 	}
 
 	private static void tryRegEx2() {
@@ -70,19 +87,25 @@ public class DemoApplication {
 		System.out.println("02-23456789 is local phone number: " + str5.matches(pattern2));
 
 		// 練習
-		String str6 = "038 - 123456";
-		str6 = str6.replace(" ", "");
+//		String str6 = "038 - 123456";
+//		str6 = str6.replace(" ", "");
 
-		String[] strArr = str6.split("-");
-		if (strArr[0].equalsIgnoreCase("02") || strArr[0].equalsIgnoreCase("04")) {
-			// == 只能做物件比對
-			System.out.println("this is TW local phone number: " + strArr[1].matches("\\d{8}"));
-		} else if (strArr[0].matches("0\\d|0\\d{2}")) {
-			String str41 = str6.replace("-", "").substring(2);
-			System.out.println("this is TW local phone number: " + str41.matches("\\d{7}"));
-		} else {
-			System.out.println("this is TW local phone number: " + false);
-		}
+//		String[] strArr = str6.split("-");
+//		if (strArr[0].equalsIgnoreCase("02")) {
+//			// == 只能做物件比對
+//			System.out.println("this is TW local phone number: " + strArr[1].matches("\\d{8}"));
+//		} else if (strArr[0].matches("0\\d|0\\d{2}|0\\d{3}")) {
+//			String str41 = str6.replace("-", "").substring(2);
+//			System.out.println("this is TW local phone number: " + str41.matches("\\d{7}"));
+//		} else {
+//			System.out.println("this is TW local phone number: " + false);
+//		}
+		
+		String str6 = "03-1234567";
+		String str7 = "02-1234567";
+		String pattern3 = "02-\\d{8}|0(3|4|5|6|7|8|9)-\\d{7}|0\\d{2}-\\d{6}|0\\d{3}-\\d{5}";
+		System.out.println("03-1234567 is TW local phone number: " + str6.matches(pattern3));
+		System.out.println("02-1234567 is TW local phone number: " + str7.matches(pattern3));
 
 	}
 
