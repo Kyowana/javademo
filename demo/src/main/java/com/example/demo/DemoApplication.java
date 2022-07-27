@@ -9,13 +9,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+
 @SpringBootApplication
 public class DemoApplication {
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException {
 //		SpringApplication.run(DemoApplication.class, args);
 
@@ -29,22 +33,45 @@ public class DemoApplication {
 //		tryRegEx2();
 //		tryRegEx3();
 
+//		Scanner scanner = new Scanner(System.in);
+//		while (true) {
+//			System.out.println("Please input: ");
+//			String input = scanner.next();
+//			System.out.println("Your input is: " + input);
+//		}
+		
+		tryJoin();
+
+	}
+
+	private static void tryJoin() {
+		Xjoin job1 = new Xjoin("Job1");
+		Xjoin job2 = new Xjoin("Job2");
+		Xjoin job3 = new Xjoin("Job3");
+		job1.start();
+		try {
+			job1.join();  // Job1優先執行到結束
+		} catch (InterruptedException e) {
+			System.out.println(e);
+		}
+		job2.start();
+		job3.start();
 	}
 	
 	private static void tryRegEx3() {
-		
+
 		String str1 = "98_ad";
 		String str2 = "98_@ad";
-		String pattern = "\\w+";  // (不限長度) 數字/大小寫英文/底線
+		String pattern = "\\w+"; // (不限長度) 數字/大小寫英文/底線
 		System.out.println("98_ad: " + str1.matches(pattern));
 		System.out.println("98_@ad: " + str2.matches(pattern));
-		
+
 		String str3 = "AAA";
-		String pattern1 = "AAA" + "\\w+";  // 至少1
-		String pattern2 = "AAA" + "\\w*";  // 可0
+		String pattern1 = "AAA" + "\\w+"; // 至少1
+		String pattern2 = "AAA" + "\\w*"; // 可0
 		System.out.println("AAA: " + str3.matches(pattern1));
 		System.out.println("AAA: " + str3.matches(pattern2));
-		
+
 	}
 
 	private static void tryRegEx2() {
@@ -100,7 +127,7 @@ public class DemoApplication {
 //		} else {
 //			System.out.println("this is TW local phone number: " + false);
 //		}
-		
+
 		String str6 = "03-1234567";
 		String str7 = "02-1234567";
 		String pattern3 = "02-\\d{8}|0(3|4|5|6|7|8|9)-\\d{7}|0\\d{2}-\\d{6}|0\\d{3}-\\d{5}";
@@ -186,4 +213,20 @@ public class DemoApplication {
 		}
 	}
 
+}
+
+class Xjoin extends Thread {
+	Xjoin(String name) {
+		super(name);
+	}
+	public void run() {
+		for (int i = 1; i <= 5; i++) {
+			try {
+				sleep(500);
+			} catch (InterruptedException e) {
+				System.out.println(e);
+			}
+			System.out.println(getName() + " is running " + i);
+		}
+	}
 }

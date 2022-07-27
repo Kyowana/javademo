@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,94 +13,128 @@ import org.junit.jupiter.api.Test;
 public class Regex {
 
 	@Test
-	public void homework0608() {
-		
-		String id = "A236263094";
-		String pattern = "[A-Z](1|2)\\d{8}";
-		
-		Map<String, String> map = new HashMap<>();
-		map.put("A", "10");
-		map.put("B", "11");
-		map.put("C", "12");
-		map.put("D", "13");
-		map.put("E", "14");
-		map.put("F", "15");
-		map.put("G", "16");
-		map.put("H", "17");
-		map.put("I", "34");
-		map.put("J", "18");
-		map.put("K", "19");
-		map.put("L", "20");
-		map.put("M", "21");
-		map.put("N", "22");
-		map.put("O", "35");
-		map.put("P", "23");
-		map.put("Q", "24");
-		map.put("R", "25");
-		map.put("S", "26");
-		map.put("T", "27");
-		map.put("U", "28");
-		map.put("V", "29");
-		map.put("W", "32");
-		map.put("X", "30");
-		map.put("Y", "31");
-		map.put("Z", "33");
-		
-		if (!id.matches(pattern)) {
-			System.out.println("This is not correct ID number.");
-		} else {
-			String val = null;
-			for (Map.Entry<String, String> item : map.entrySet()) {
-				String key = item.getKey();
-				if(id.substring(0,1).equals(key)) {
-					val = item.getValue();
-					break;
-				}
-			}
-			int index00 = Integer.parseInt(val.substring(0,1));
-			int index01 = Integer.parseInt(val.substring(1));
-			int index1 = Integer.parseInt(id.substring(1,2));
-			int index2 = Integer.parseInt(id.substring(2,3));
-			int index3 = Integer.parseInt(id.substring(3,4));
-			int index4 = Integer.parseInt(id.substring(4,5));
-			int index5 = Integer.parseInt(id.substring(5,6));
-			int index6 = Integer.parseInt(id.substring(6,7));
-			int index7 = Integer.parseInt(id.substring(7,8));
-			int index8 = Integer.parseInt(id.substring(8,9));
-			int verifyCode = Integer.parseInt(id.substring(9));
-			
-			int product = index00 * 1 + index01 * 9 + index1 * 8 + index2 * 7 + index3 * 6 + index4 * 5 + index5 * 4 + index6 * 3 + index7 * 2 + index8 * 1;
-			int expectedNumber = 10 - product % 10;
-			if (expectedNumber == verifyCode) {
-				System.out.println("This is correct ID number.");
-			} else {
-				System.out.println("This is not correct ID number.");
-			}
-			
+	public void trySwitch() {
+		int score = 99;
+		switch (score / 10) {
+		case 10:
+		case 9:
+		case 8:
+			System.out.println("high score");
+			break;
+
+		default:
+			System.out.println("not good");
+			break;
 		}
 	}
 	
 	@Test
+	public void tryTernary() {
+		for (int i = 0; i < 10; i++) {
+			double r = Math.random();  // 0 < q < 1
+			String result = r > 0.5 ? " > 0.5" : " <= 0.5";
+			System.out.println(r + result);
+		}
+	}
+	
+	@Test
+	public void homework0608() {
+
+		Scanner scanner = new Scanner(System.in);
+		while (true) {
+			System.out.println("Please input: ");
+			String input = scanner.next();
+//			System.out.println("Your input is: " + input);
+
+//			String id = "A236263094";
+			String id = input;
+			String pattern = "[A-Z](1|2)\\d{8}";
+
+			Map<String, String> map = new HashMap<>();
+			map.put("A", "10");
+			map.put("B", "11");
+			map.put("C", "12");
+			map.put("D", "13");
+			map.put("E", "14");
+			map.put("F", "15");
+			map.put("G", "16");
+			map.put("H", "17");
+			map.put("I", "34");
+			map.put("J", "18");
+			map.put("K", "19");
+			map.put("L", "20");
+			map.put("M", "21");
+			map.put("N", "22");
+			map.put("O", "35");
+			map.put("P", "23");
+			map.put("Q", "24");
+			map.put("R", "25");
+			map.put("S", "26");
+			map.put("T", "27");
+			map.put("U", "28");
+			map.put("V", "29");
+			map.put("W", "32");
+			map.put("X", "30");
+			map.put("Y", "31");
+			map.put("Z", "33");
+
+			if (!id.matches(pattern)) {
+				System.out.println("This is not correct ID number.");
+			} else {
+				String val = null;
+				for (Map.Entry<String, String> item : map.entrySet()) {
+					String key = item.getKey();
+					if (id.substring(0, 1).equals(key)) {
+						val = item.getValue();
+						break;
+					}
+				}
+				int index00 = Integer.parseInt(val.substring(0, 1));
+				int index01 = Integer.parseInt(val.substring(1));
+				int index1 = Integer.parseInt(id.substring(1, 2));
+				int index2 = Integer.parseInt(id.substring(2, 3));
+				int index3 = Integer.parseInt(id.substring(3, 4));
+				int index4 = Integer.parseInt(id.substring(4, 5));
+				int index5 = Integer.parseInt(id.substring(5, 6));
+				int index6 = Integer.parseInt(id.substring(6, 7));
+				int index7 = Integer.parseInt(id.substring(7, 8));
+				int index8 = Integer.parseInt(id.substring(8, 9));
+				int verifyCode = Integer.parseInt(id.substring(9));
+
+				int product = index00 * 1 + index01 * 9 + index1 * 8 + index2 * 7 + index3 * 6 + index4 * 5 + index5 * 4
+						+ index6 * 3 + index7 * 2 + index8 * 1;
+				int expectedNumber = 10 - product % 10;
+				if (expectedNumber == verifyCode) {
+					System.out.println("This is correct ID number.");
+				} else {
+					System.out.println("This is not correct ID number.");
+				}
+
+			}
+		}
+	}
+
+	@Test
 	public void tryRegEx4() {
-		
+
 		String str1 = "cat";
 		String str2 = "flat";
 		String str3 = "at";
-		String pattern = ".*at";  // .(萬用字元): 除了\n以外的所有字元
+		String pattern = ".*at"; // .(萬用字元): 除了\n以外的所有字元
 		System.out.println("cat: " + str1.matches(pattern));
 		System.out.println("flat: " + str2.matches(pattern));
 		System.out.println("at: " + str3.matches(pattern));
-		
+
 		// 1
-		Pattern p = Pattern.compile(pattern);  // 編譯正規表達式
+		Pattern p = Pattern.compile(pattern); // 編譯正規表達式
 		Matcher m = p.matcher(str1);
 		System.out.println(m.matches());
-		
+
 		// 2
 		System.out.println(Pattern.matches(pattern, str1));
-		
+
 	}
-	
+
 	@Test
 	public void tryRegEx3() {
 
